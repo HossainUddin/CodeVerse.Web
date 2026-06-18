@@ -9,6 +9,14 @@
       content="Read specialized articles on custom software design, database optimizations, mobile interface structures, cloud architectures, and AI automations."
     />
 
+    <!-- Google Fonts Preconnect and Stylesheet -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -536,6 +544,7 @@
             id="search-input"
             class="w-full bg-slate-200 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-full px-5 py-2.5 pl-11 text-xs text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-neonLime transition-colors"
             placeholder="Search insights..."
+            aria-label="Search articles"
           />
           <div
             class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500"
@@ -1083,6 +1092,7 @@
               required
               class="bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-white text-xs w-full focus:outline-none focus:border-neonLime"
               placeholder="name@email.com"
+              aria-label="Email Address for Newsletter"
             />
             <button
               type="submit"

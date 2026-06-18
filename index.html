@@ -9,6 +9,14 @@
       content="Custom software development, web applications, mobile apps, cloud solutions, and IT consulting. CodeVerse Studio helps businesses achieve digital excellence."
     />
 
+    <!-- Google Fonts Preconnect and Stylesheet -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -1159,6 +1167,7 @@
               src="about_company_team.png"
               alt="CodeVerse Collaborations"
               class="w-full h-auto object-cover rounded-2xl max-h-[340px]"
+              loading="lazy"
             />
           </div>
         </div>
@@ -2744,6 +2753,7 @@
               required
               class="bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-white text-xs w-full focus:outline-none focus:border-neonLime"
               placeholder="name@email.com"
+              aria-label="Email Address for Newsletter"
             />
             <button
               type="submit"
