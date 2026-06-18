@@ -1,476 +1,1116 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CodeVerse Studio | Tech Insights & Engineering Blog</title>
-  <meta name="description" content="Read specialized articles on custom software design, database optimizations, mobile interface structures, cloud architectures, and AI automations.">
-  
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="style.css">
-  
-  <!-- Tailwind Configuration -->
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            neonLime: 'var(--color-accent)',
-            neonLimeHover: 'var(--color-accent-hover)',
-            darkBg: '#050811',
-            glassBg: 'rgba(13, 20, 38, 0.65)',
-            cardBg: '#131B2E',
-            textMuted: '#94A3B8',
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeVerse Studio | Tech Insights & Engineering Blog</title>
+    <meta
+      name="description"
+      content="Read specialized articles on custom software design, database optimizations, mobile interface structures, cloud architectures, and AI automations."
+    />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Tailwind Configuration -->
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              neonLime: "var(--color-accent)",
+              neonLimeHover: "var(--color-accent-hover)",
+              darkBg: "var(--color-bg)",
+              glassBg: "var(--color-card-bg)",
+              textMain: "var(--color-text)",
+              textMuted: "var(--color-text-muted)",
+              borderMain: "var(--color-card-border)",
+            },
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', "sans-serif"],
+              display: ['"Space Grotesk"', "sans-serif"],
+            },
+            backdropBlur: {
+              xs: "2px",
+            },
           },
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            display: ['"Space Grotesk"', 'sans-serif'],
-          },
-          backdropBlur: {
-            xs: '2px',
-          }
-        }
-      }
-    }
-  </script>
-</head>
-<body class="bg-darkBg text-slate-200 min-h-screen selection:bg-neonLime selection:text-black grid-bg antialiased">
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="bg-darkBg text-textMain min-h-screen selection:bg-neonLime selection:text-black grid-bg antialiased transition-colors duration-300"
+  >
+    <!-- Background Radial Glows -->
+    <div
+      class="absolute top-0 right-0 w-[600px] h-[600px] bg-neonLime/10 blur-[160px] rounded-full -z-10 pointer-events-none animate-pulse-glow"
+    ></div>
+    <div
+      class="absolute top-[800px] left-0 w-[500px] h-[500px] bg-neonLime/5 blur-[160px] rounded-full -z-10 pointer-events-none"
+    ></div>
 
-  <!-- Background Radial Glows -->
-  <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-neonLime/10 blur-[160px] rounded-full -z-10 pointer-events-none animate-pulse-glow"></div>
-  <div class="absolute top-[800px] left-0 w-[500px] h-[500px] bg-neonLime/5 blur-[160px] rounded-full -z-10 pointer-events-none"></div>
+    <!-- Floating Navigation Bar -->
+    <header
+      class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-6xl"
+    >
+      <nav
+        class="glass-panel px-4 py-3 sm:px-6 rounded-full flex items-center justify-between transition-all duration-300"
+      >
+        <!-- Logo -->
+        <a
+          href="index.html"
+          class="flex items-center gap-2 sm:gap-3 group flex-shrink-0"
+        >
+          <div
+            class="relative w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 group-hover:border-neonLime/40 transition-colors"
+          >
+            <svg
+              class="w-5 h-5 sm:w-6 sm:h-6 text-neonLime"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L12 12" />
+              <circle cx="12" cy="12" r="1" fill="currentColor" />
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span
+              class="font-display font-bold text-sm sm:text-lg leading-tight tracking-wider text-textMain"
+              >CodeVerse</span
+            >
+            <span
+              class="text-[9px] sm:text-[10px] text-neonLime font-medium uppercase tracking-widest leading-none"
+              >IT Solutions</span
+            >
+          </div>
+        </a>
 
-  <!-- Floating Navigation Bar -->
-  <header class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-6xl">
-    <nav class="glass-panel px-4 py-3 sm:px-6 rounded-full flex items-center justify-between transition-all duration-300">
-      
-      <!-- Logo -->
-      <a href="index.html" class="flex items-center gap-2 sm:gap-3 group flex-shrink-0">
-        <div class="relative w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-slate-900 border border-slate-800 group-hover:border-neonLime/40 transition-colors">
-          <svg class="w-5 h-5 sm:w-6 sm:h-6 text-neonLime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L12 12"/>
-            <circle cx="12" cy="12" r="1" fill="currentColor"/>
-          </svg>
+        <!-- Desktop Navigation Menu -->
+        <div
+          class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium"
+        >
+          <a
+            href="index.html"
+            class="nav-link text-textMuted hover:text-neonLime transition-colors py-1"
+            >Home</a
+          >
+          <a
+            href="index.html#services"
+            class="nav-link text-textMuted hover:text-neonLime transition-colors py-1"
+            >Services</a
+          >
+          <a
+            href="index.html#about"
+            class="nav-link text-textMuted hover:text-neonLime transition-colors py-1"
+            >About</a
+          >
+          <a
+            href="index.html#portfolio"
+            class="nav-link text-textMuted hover:text-neonLime transition-colors py-1"
+            >Portfolio</a
+          >
+          <a
+            href="#"
+            class="nav-link nav-link-active hover:text-neonLime transition-colors py-1"
+            >Blog</a
+          >
+          <a
+            href="index.html#contact"
+            class="nav-link text-textMuted hover:text-neonLime transition-colors py-1"
+            >Contact</a
+          >
         </div>
-        <div class="flex flex-col">
-          <span class="font-display font-bold text-sm sm:text-lg leading-tight tracking-wider">CodeVerse</span>
-          <span class="text-[9px] sm:text-[10px] text-neonLime font-medium uppercase tracking-widest leading-none">IT Solutions</span>
-        </div>
-      </a>
 
-      <!-- Desktop Navigation Menu -->
-      <div class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium">
-        <a href="index.html" class="text-slate-300 hover:text-neonLime transition-colors py-1">Home</a>
-        <a href="index.html#services" class="text-slate-300 hover:text-neonLime transition-colors py-1">Services</a>
-        <a href="index.html#about" class="text-slate-300 hover:text-neonLime transition-colors py-1">About</a>
-        <a href="index.html#portfolio" class="text-slate-300 hover:text-neonLime transition-colors py-1">Portfolio</a>
-        <a href="#" class="nav-link-active hover:text-neonLime transition-colors py-1">Blog</a>
-        <a href="index.html#contact" class="text-slate-300 hover:text-neonLime transition-colors py-1">Contact</a>
-      </div>
-
-      <!-- Action Buttons & Theme Toggle -->
-      <div class="flex items-center gap-3 sm:gap-4">
-        
-        <!-- Theme Switcher Desktop Dropdown -->
-        <div class="relative hidden sm:block">
-          <button id="theme-btn" class="w-8 h-8 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-neonLime transition-colors hover:border-neonLime/45" aria-label="Select Theme">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.01 2.512a15.9 15.9 0 013.398-1.62m0 0c1.214-.582 2.443-1.116 3.685-1.602l-.268-1.07a2.25 2.25 0 011.606-2.685l2.218-.556A2.246 2.246 0 0122 13.59c0 1.24-.97 2.291-2.207 2.378a19.825 19.825 0 01-6.877.427z"/>
+        <!-- Action Buttons & Theme Toggle -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <!-- Light/Dark Mode Switcher Desktop Button -->
+          <button
+            id="mode-btn"
+            class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-neonLime dark:hover:text-neonLime transition-colors hover:border-neonLime/45 dark:hover:border-neonLime/45"
+            aria-label="Toggle Light/Dark Mode"
+          >
+            <!-- Moon Icon -->
+            <svg
+              id="mode-moon"
+              class="w-4 h-4 block"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+              />
+            </svg>
+            <!-- Sun Icon -->
+            <svg
+              id="mode-sun"
+              class="w-4 h-4 hidden"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707.707M12 7a5 5 0 100 10 5 5 0 000-10z"
+              />
             </svg>
           </button>
-          
-          <div id="theme-dropdown" class="hidden absolute right-0 mt-3 w-40 glass-panel rounded-2xl p-2 shadow-2xl border border-slate-800 flex flex-col gap-1 z-50">
-            <button class="theme-option px-3 py-1.5 rounded-lg text-left text-xs font-semibold text-slate-300 flex items-center gap-2" data-set-theme="lime">
-              <span class="w-2.5 h-2.5 rounded-full bg-[#C5F82A]"></span> Lime Cyber
+
+          <!-- Theme Switcher Desktop Dropdown -->
+          <div class="relative hidden sm:block">
+            <button
+              id="theme-btn"
+              class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-neonLime dark:hover:text-neonLime transition-colors hover:border-neonLime/45 dark:hover:border-neonLime/45"
+              aria-label="Select Theme"
+            >
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.01 2.512a15.9 15.9 0 013.398-1.62m0 0c1.214-.582 2.443-1.116 3.685-1.602l-.268-1.07a2.25 2.25 0 011.606-2.685l2.218-.556A2.246 2.246 0 0122 13.59c0 1.24-.97 2.291-2.207 2.378a19.825 19.825 0 01-6.877.427z"
+                />
+              </svg>
             </button>
-            <button class="theme-option px-3 py-1.5 rounded-lg text-left text-xs font-semibold text-slate-300 flex items-center gap-2" data-set-theme="cyan">
-              <span class="w-2.5 h-2.5 rounded-full bg-[#00F0FF]"></span> Oceanic Cyan
-            </button>
-            <button class="theme-option px-3 py-1.5 rounded-lg text-left text-xs font-semibold text-slate-300 flex items-center gap-2" data-set-theme="rose">
-              <span class="w-2.5 h-2.5 rounded-full bg-[#F43F5E]"></span> Cosmic Rose
-            </button>
+
+            <div
+              id="theme-dropdown"
+              class="hidden absolute right-0 mt-3 w-40 glass-panel rounded-2xl p-2 shadow-2xl border border-borderMain flex flex-col gap-1 z-50"
+            >
+              <button
+                class="theme-option px-3 py-1.5 rounded-lg text-left text-xs font-semibold text-textMain flex items-center gap-2"
+                data-set-theme="lime"
+              >
+                <span class="w-2.5 h-2.5 rounded-full bg-[#C5F82A]"></span> Lime
+                Cyber
+              </button>
+              <button
+                class="theme-option px-3 py-1.5 rounded-lg text-left text-xs font-semibold text-textMain flex items-center gap-2"
+                data-set-theme="cyan"
+              >
+                <span class="w-2.5 h-2.5 rounded-full bg-[#00F0FF]"></span>
+                Oceanic Cyan
+              </button>
+              <button
+                class="theme-option px-3 py-1.5 rounded-lg text-left text-xs font-semibold text-textMain flex items-center gap-2"
+                data-set-theme="rose"
+              >
+                <span class="w-2.5 h-2.5 rounded-full bg-[#F43F5E]"></span>
+                Cosmic Rose
+              </button>
+            </div>
+          </div>
+
+          <a
+            href="index.html#contact"
+            class="hidden sm:inline-flex px-5 py-2 bg-neonLime text-black font-semibold rounded-full hover:bg-neonLimeHover hover:shadow-[0_0_15px_rgba(var(--color-accent-rgb),0.35)] transition-all duration-300 text-xs"
+          >
+            Get Started
+          </a>
+
+          <!-- Mobile Menu Toggle Button (Hamburger) -->
+          <button
+            id="menu-btn"
+            class="md:hidden flex flex-col justify-between w-6 h-4 text-textMain hover:text-neonLime transition-colors focus:outline-none flex-shrink-0"
+            aria-label="Toggle Menu"
+          >
+            <span
+              class="w-full h-0.5 bg-current transition-transform duration-300"
+            ></span>
+            <span
+              class="w-full h-0.5 bg-current transition-opacity duration-300"
+            ></span>
+            <span
+              class="w-full h-0.5 bg-current transition-transform duration-300"
+            ></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Mobile Drawer Backdrop Overlay -->
+    <div
+      id="mobile-backdrop"
+      class="hidden md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40 opacity-0 pointer-events-auto"
+    ></div>
+
+    <!-- Mobile Drawer Sidebar (Left-to-Right Slide) -->
+    <div
+      id="mobile-sidebar"
+      class="fixed top-0 left-0 h-full w-[280px] max-w-[80vw] z-50 glass-panel shadow-2xl p-6 flex flex-col justify-between transform -translate-x-full overflow-y-auto md:hidden"
+    >
+      <div class="flex flex-col gap-6">
+        <!-- Sidebar Header -->
+        <div
+          class="flex items-center justify-between border-b border-borderMain pb-4"
+        >
+          <a href="index.html" class="flex items-center gap-2 flex-shrink-0">
+            <div
+              class="relative w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800"
+            >
+              <svg
+                class="w-5 h-5 text-neonLime"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L12 12" />
+              </svg>
+            </div>
+            <div class="flex flex-col text-left">
+              <span
+                class="font-display font-bold text-sm tracking-wider text-textMain leading-none"
+                >CodeVerse</span
+              >
+              <span class="text-[8px] font-bold text-neonLime uppercase"
+                >IT Solutions</span
+              >
+            </div>
+          </a>
+
+          <button
+            id="close-btn"
+            class="w-8 h-8 rounded-full border border-borderMain flex items-center justify-center text-textMuted hover:text-neonLime hover:border-neonLime/45"
+            aria-label="Close Menu"
+          >
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Navigation Links inside Sidebar -->
+        <div class="flex flex-col gap-1.5 text-left text-sm font-medium">
+          <a
+            href="index.html"
+            class="mobile-link text-textMuted hover:text-neonLime py-2 px-3 rounded-lg hover:bg-neonLime/10 transition-colors"
+            >Home</a
+          >
+          <a
+            href="index.html#services"
+            class="mobile-link text-textMuted hover:text-neonLime py-2 px-3 rounded-lg hover:bg-neonLime/10 transition-colors"
+            >Services</a
+          >
+          <a
+            href="index.html#about"
+            class="mobile-link text-textMuted hover:text-neonLime py-2 px-3 rounded-lg hover:bg-neonLime/10 transition-colors"
+            >About</a
+          >
+          <a
+            href="index.html#portfolio"
+            class="mobile-link text-textMuted hover:text-neonLime py-2 px-3 rounded-lg hover:bg-neonLime/10 transition-colors"
+            >Portfolio</a
+          >
+          <a
+            href="#"
+            class="mobile-link text-neonLime font-semibold py-2 px-3 rounded-lg hover:bg-neonLime/10 transition-colors"
+            >Blog</a
+          >
+          <a
+            href="index.html#contact"
+            class="mobile-link text-textMuted hover:text-neonLime py-2 px-3 rounded-lg hover:bg-neonLime/10 transition-colors"
+            >Contact</a
+          >
+        </div>
+      </div>
+
+      <!-- Sidebar Footer -->
+      <div class="flex flex-col gap-5 border-t border-borderMain pt-4">
+        <!-- Theme accent color switcher -->
+        <div class="flex flex-col gap-2 text-left">
+          <span
+            class="text-[9px] font-bold text-textMuted uppercase tracking-widest font-mono"
+            >Accent Theme</span
+          >
+          <div class="flex gap-2">
+            <button
+              class="w-6 h-6 rounded-full bg-[#C5F82A] border border-slate-900 shadow transform hover:scale-105 active:scale-95 transition-transform"
+              data-set-theme="lime"
+              title="Lime Cyber"
+            ></button>
+            <button
+              class="w-6 h-6 rounded-full bg-[#00F0FF] border border-slate-900 shadow transform hover:scale-105 active:scale-95 transition-transform"
+              data-set-theme="cyan"
+              title="Oceanic Cyan"
+            ></button>
+            <button
+              class="w-6 h-6 rounded-full bg-[#F43F5E] border border-slate-900 shadow transform hover:scale-105 active:scale-95 transition-transform"
+              data-set-theme="rose"
+              title="Cosmic Rose"
+            ></button>
           </div>
         </div>
 
-        <a href="index.html#contact" class="hidden sm:inline-flex px-5 py-2 bg-neonLime text-black font-semibold rounded-full hover:bg-neonLimeHover hover:shadow-[0_0_15px_rgba(var(--color-accent-rgb),0.35)] transition-all duration-300 text-xs">
+        <!-- Light / Dark Dynamic Mode Toggle -->
+        <div class="flex items-center justify-between text-left">
+          <span
+            class="text-[9px] font-bold text-textMuted uppercase tracking-widest font-mono"
+            >Dynamic Mode</span
+          >
+          <button
+            id="mobile-mode-btn"
+            class="px-4 py-1.5 rounded-full border border-borderMain text-xs font-semibold hover:text-neonLime hover:border-neonLime/45 flex items-center gap-1.5 transition-colors"
+          >
+            <span id="mobile-mode-text">Dark Mode</span>
+          </button>
+        </div>
+
+        <a
+          href="index.html#contact"
+          class="mobile-link text-center py-2.5 bg-neonLime text-black font-semibold rounded-full hover:bg-neonLimeHover hover:shadow-[0_0_15px_rgba(var(--color-accent-rgb),0.3)] transition-all text-xs"
+        >
           Get Started
         </a>
-        
-        <button id="menu-btn" class="md:hidden flex flex-col justify-between w-6 h-4 text-slate-300 hover:text-neonLime transition-colors focus:outline-none flex-shrink-0" aria-label="Toggle Menu">
-          <span class="w-full h-0.5 bg-current transition-transform duration-300"></span>
-          <span class="w-full h-0.5 bg-current transition-opacity duration-300"></span>
-          <span class="w-full h-0.5 bg-current transition-transform duration-300"></span>
-        </button>
       </div>
-    </nav>
-
-    <!-- Mobile Drawer Menu -->
-    <div id="mobile-menu" class="hidden absolute top-16 left-0 w-full glass-panel rounded-3xl p-5 flex flex-col gap-4 text-center shadow-2xl transition-all duration-300 origin-top transform scale-95 opacity-0 z-50">
-      <a href="index.html" class="mobile-link text-slate-300 hover:text-neonLime py-2 border-b border-slate-800/50">Home</a>
-      <a href="index.html#services" class="mobile-link text-slate-300 hover:text-neonLime py-2 border-b border-slate-800/50">Services</a>
-      <a href="index.html#about" class="mobile-link text-slate-300 hover:text-neonLime py-2 border-b border-slate-800/50">About</a>
-      <a href="index.html#portfolio" class="mobile-link text-slate-300 hover:text-neonLime py-2 border-b border-slate-800/50">Portfolio</a>
-      <a href="#" class="mobile-link text-neonLime font-semibold py-2 border-b border-slate-800/50">Blog</a>
-      <a href="index.html#contact" class="mobile-link text-slate-300 hover:text-neonLime py-2 border-b border-slate-800/50">Contact</a>
-      
-      <!-- Mobile Theme Picker Section -->
-      <div class="py-2 border-b border-slate-800/50 flex flex-col gap-2">
-        <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Select Theme Accent</span>
-        <div class="flex justify-center gap-4">
-          <button class="w-6 h-6 rounded-full bg-[#C5F82A] border border-slate-900 shadow-md transform hover:scale-110 active:scale-95 transition-transform" data-set-theme="lime" title="Lime Cyber"></button>
-          <button class="w-6 h-6 rounded-full bg-[#00F0FF] border border-slate-900 shadow-md transform hover:scale-110 active:scale-95 transition-transform" data-set-theme="cyan" title="Oceanic Cyan"></button>
-          <button class="w-6 h-6 rounded-full bg-[#F43F5E] border border-slate-900 shadow-md transform hover:scale-110 active:scale-95 transition-transform" data-set-theme="rose" title="Cosmic Rose"></button>
-        </div>
-      </div>
-      
-      <a href="index.html#contact" class="mobile-link mt-1 py-2.5 bg-neonLime text-black font-semibold rounded-full hover:bg-neonLimeHover transition-colors text-sm">Get Started</a>
-    </div>
-  </header>
-
-  <!-- Blog Hero / Featured Post -->
-  <section class="relative pt-36 pb-16 px-6 max-w-7xl mx-auto">
-    <div class="text-left mb-10 reveal">
-      <span class="text-xs font-bold text-neonLime uppercase tracking-widest font-mono">Featured Insights</span>
-      <h1 class="font-display font-bold text-4xl sm:text-5xl lg:text-6xl leading-[1.1] tracking-tight mt-2">
-        CodeVerse Engineering Blog
-      </h1>
-      <p class="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl">
-        In-depth tutorials, system reviews, and strategic coding solutions written by our design engineers.
-      </p>
     </div>
 
-    <!-- Featured Post Large Card -->
-    <div class="glass-panel p-6 sm:p-8 rounded-3xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center reveal hover:shadow-[0_0_30px_rgba(var(--color-accent-rgb),0.12)] transition-all duration-300">
-      
-      <!-- Graphic/Thumbnail (Left 5 Cols) -->
-      <div class="lg:col-span-5 aspect-[16/10] bg-slate-950 rounded-2xl flex items-center justify-center p-6 relative overflow-hidden border border-slate-900">
-        <div class="absolute w-40 h-40 bg-neonLime/10 blur-3xl rounded-full"></div>
-        <svg class="w-20 h-20 text-neonLime animate-float" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-.778.099-1.533.284-2.253"/>
-        </svg>
-      </div>
-
-      <!-- Info/Text (Right 7 Cols) -->
-      <div class="lg:col-span-7 flex flex-col gap-4 text-left">
-        <div class="flex flex-wrap items-center gap-3">
-          <span class="px-3 py-1 bg-neonLime/15 text-neonLime font-mono text-[10px] font-bold rounded-full uppercase tracking-wider">Engineering</span>
-          <span class="text-xs text-slate-500 font-mono">June 16, 2026</span>
-          <span class="text-xs text-slate-500 font-mono">&bull; 6 min read</span>
-        </div>
-        
-        <h2 class="text-2xl sm:text-3xl font-bold font-display text-white hover:text-neonLime transition-colors cursor-pointer">
-          The Future of Serverless Edge Architectures and Microservices
-        </h2>
-        
-        <p class="text-slate-350 text-sm sm:text-base leading-relaxed">
-          How static edge caching, decentralized database sync pools, and low-latency API call routings are redefining loading speeds for web applications globally.
+    <!-- Blog Hero / Featured Post -->
+    <section class="relative pt-36 pb-16 px-6 max-w-7xl mx-auto">
+      <div class="text-left mb-10 reveal">
+        <span
+          class="text-xs font-bold text-neonLime uppercase tracking-widest font-mono"
+          >Featured Insights</span
+        >
+        <h1
+          class="font-display font-bold text-4xl sm:text-5xl lg:text-6xl leading-[1.1] tracking-tight mt-2 text-textMain"
+        >
+          CodeVerse Engineering Blog
+        </h1>
+        <p class="text-textMuted text-sm sm:text-base mt-2 max-w-2xl">
+          In-depth tutorials, system reviews, and strategic coding solutions
+          written by our design engineers.
         </p>
-
-        <div class="mt-2">
-          <a href="#" class="inline-flex items-center gap-2 text-neonLime font-semibold hover:text-white transition-colors group text-sm">
-            Read Full Article 
-            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-            </svg>
-          </a>
-        </div>
       </div>
 
-    </div>
-  </section>
-
-  <!-- Filter & Search Widget -->
-  <section class="relative py-8 px-6 max-w-7xl mx-auto reveal">
-    <div class="glass-panel p-6 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-6">
-      
-      <!-- Category Tabs -->
-      <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3" id="category-tabs">
-        <button class="px-5 py-2 rounded-full text-xs font-semibold bg-neonLime text-black font-bold transition-all shadow-[0_0_10px_rgba(var(--color-accent-rgb),0.2)]" data-category="all">All posts</button>
-        <button class="px-5 py-2 rounded-full text-xs font-semibold bg-slate-900 text-slate-300 hover:text-neonLime hover:bg-slate-800 transition-all" data-category="engineering">Engineering</button>
-        <button class="px-5 py-2 rounded-full text-xs font-semibold bg-slate-900 text-slate-300 hover:text-neonLime hover:bg-slate-800 transition-all" data-category="design">Design</button>
-        <button class="px-5 py-2 rounded-full text-xs font-semibold bg-slate-900 text-slate-300 hover:text-neonLime hover:bg-slate-800 transition-all" data-category="cloud">Cloud</button>
-        <button class="px-5 py-2 rounded-full text-xs font-semibold bg-slate-900 text-slate-300 hover:text-neonLime hover:bg-slate-800 transition-all" data-category="ai">AI</button>
-      </div>
-
-      <!-- Search input -->
-      <div class="relative w-full md:w-80 flex-shrink-0">
-        <input type="text" id="search-input" class="w-full bg-slate-950 border border-slate-800 rounded-full px-5 py-2.5 pl-11 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-neonLime transition-colors" placeholder="Search insights...">
-        <div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+      <!-- Featured Post Large Card -->
+      <div
+        class="glass-panel p-6 sm:p-8 rounded-3xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center reveal hover:shadow-[0_0_30px_rgba(var(--color-accent-rgb),0.12)] transition-all duration-300"
+      >
+        <!-- Graphic/Thumbnail (Left 5 Cols) -->
+        <div
+          class="lg:col-span-5 aspect-[16/10] bg-slate-100 dark:bg-slate-950 rounded-2xl flex items-center justify-center p-6 relative overflow-hidden border border-slate-200 dark:border-slate-900"
+        >
+          <div
+            class="absolute w-40 h-40 bg-neonLime/10 blur-3xl rounded-full"
+          ></div>
+          <svg
+            class="w-20 h-20 text-neonLime animate-float"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-.778.099-1.533.284-2.253"
+            />
           </svg>
         </div>
-      </div>
 
-    </div>
-  </section>
+        <!-- Info/Text (Right 7 Cols) -->
+        <div class="lg:col-span-7 flex flex-col gap-4 text-left">
+          <div class="flex flex-wrap items-center gap-3">
+            <span
+              class="px-3 py-1 bg-neonLime/15 text-neonLime font-mono text-[10px] font-bold rounded-full uppercase tracking-wider"
+              >Engineering</span
+            >
+            <span class="text-xs text-textMuted font-mono">June 16, 2026</span>
+            <span class="text-xs text-textMuted font-mono"
+              >&bull; 6 min read</span
+            >
+          </div>
 
-  <!-- Blog Cards Grid -->
-  <section class="relative py-12 px-6 max-w-7xl mx-auto">
-    
-    <!-- Blog Cards Wrapper -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="blog-grid">
-      
-      <!-- Article 1 -->
-      <div class="blog-card group glass-panel p-6 rounded-3xl flex flex-col justify-between hover:shadow-[0_0_20px_rgba(var(--color-accent-rgb),0.08)] transition-all duration-300 reveal" data-post-category="engineering">
-        <div>
-          <div class="aspect-[16/10] bg-slate-950 rounded-2xl flex items-center justify-center p-4 border border-slate-900 overflow-hidden relative mb-5">
-            <div class="absolute w-24 h-24 bg-neonLime/5 group-hover:bg-neonLime/10 blur-2xl rounded-full transition-all"></div>
-            <!-- SQL table mockup -->
-            <div class="w-full max-w-[140px] bg-slate-900 border border-slate-800 rounded-lg p-2 font-mono text-[8px] text-slate-500">
-              <div class="border-b border-slate-800 pb-1 font-bold text-neonLime">SELECT * FROM users;</div>
-              <div class="pt-1 text-[7px] leading-tight">EXPLAIN ANALYZE <br> INDEX SCAN...</div>
-            </div>
-          </div>
-          <div class="flex items-center gap-3 mb-3">
-            <span class="px-2.5 py-0.5 bg-neonLime/10 text-neonLime text-[9px] font-bold tracking-wider font-mono rounded uppercase">Engineering</span>
-            <span class="text-[10px] text-slate-500 font-mono">June 12, 2026</span>
-          </div>
-          <h3 class="text-lg font-bold font-display text-white group-hover:text-neonLime transition-colors leading-snug cursor-pointer">
-            Optimizing Database Queries in PostgreSQL
-          </h3>
-          <p class="text-slate-350 text-xs sm:text-sm mt-3 leading-relaxed">
-            Index scanning methodologies, cache buffers hits optimizations, and vacuum sorting configurations to speed up heavy queries.
+          <h2
+            class="text-2xl sm:text-3xl font-bold font-display text-textMain hover:text-neonLime transition-colors cursor-pointer"
+          >
+            The Future of Serverless Edge Architectures and Microservices
+          </h2>
+
+          <p class="text-textMuted text-sm sm:text-base leading-relaxed">
+            How static edge caching, decentralized database sync pools, and
+            low-latency API call routings are redefining loading speeds for web
+            applications globally.
           </p>
-        </div>
-        <div class="mt-5 pt-4 border-t border-slate-900/60 flex justify-between items-center text-xs">
-          <span class="text-slate-500">5 min read</span>
-          <a href="#" class="text-neonLime font-bold hover:underline flex items-center gap-1">Read &rarr;</a>
+
+          <div class="mt-2">
+            <a
+              href="#"
+              class="inline-flex items-center gap-2 text-neonLime font-semibold hover:text-white transition-colors group text-sm"
+            >
+              Read Full Article
+              <svg
+                class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
+    </section>
 
-      <!-- Article 2 -->
-      <div class="blog-card group glass-panel p-6 rounded-3xl flex flex-col justify-between hover:shadow-[0_0_20px_rgba(var(--color-accent-rgb),0.08)] transition-all duration-300 reveal" data-post-category="design">
-        <div>
-          <div class="aspect-[16/10] bg-slate-950 rounded-2xl flex items-center justify-center p-4 border border-slate-900 overflow-hidden relative mb-5">
-            <div class="absolute w-24 h-24 bg-indigo-500/5 group-hover:bg-indigo-500/10 blur-2xl rounded-full transition-all"></div>
-            <!-- Wireframe mockup -->
-            <div class="w-16 h-28 bg-slate-900 border border-slate-800 rounded-xl p-2 flex flex-col gap-2 transform group-hover:scale-105 transition-transform">
-              <div class="w-full h-1 bg-slate-800 rounded"></div>
-              <div class="w-6 h-6 rounded-full bg-neonLime/15 border border-neonLime/30 mx-auto"></div>
-              <div class="h-2 w-full bg-slate-800 rounded"></div>
-            </div>
-          </div>
-          <div class="flex items-center gap-3 mb-3">
-            <span class="px-2.5 py-0.5 bg-neonLime/10 text-neonLime text-[9px] font-bold tracking-wider font-mono rounded uppercase">Design</span>
-            <span class="text-[10px] text-slate-500 font-mono">June 08, 2026</span>
-          </div>
-          <h3 class="text-lg font-bold font-display text-white group-hover:text-neonLime transition-colors leading-snug cursor-pointer">
-            Designing Fluid Interfaces for Mobile Devices
-          </h3>
-          <p class="text-slate-350 text-xs sm:text-sm mt-3 leading-relaxed">
-            Physics-based UI layouts, elastic scrolls, and optimized gestures response configurations designed to maximize mobile retention rates.
-          </p>
-        </div>
-        <div class="mt-5 pt-4 border-t border-slate-900/60 flex justify-between items-center text-xs">
-          <span class="text-slate-500">4 min read</span>
-          <a href="#" class="text-neonLime font-bold hover:underline flex items-center gap-1">Read &rarr;</a>
-        </div>
-      </div>
-
-      <!-- Article 3 -->
-      <div class="blog-card group glass-panel p-6 rounded-3xl flex flex-col justify-between hover:shadow-[0_0_20px_rgba(var(--color-accent-rgb),0.08)] transition-all duration-300 reveal" data-post-category="cloud">
-        <div>
-          <div class="aspect-[16/10] bg-slate-950 rounded-2xl flex items-center justify-center p-4 border border-slate-900 overflow-hidden relative mb-5">
-            <div class="absolute w-24 h-24 bg-neonLime/5 group-hover:bg-neonLime/10 blur-2xl rounded-full transition-all"></div>
-            <!-- Cloud vectors -->
-            <svg class="w-12 h-12 text-neonLime animate-float-delayed" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
-            </svg>
-          </div>
-          <div class="flex items-center gap-3 mb-3">
-            <span class="px-2.5 py-0.5 bg-neonLime/10 text-neonLime text-[9px] font-bold tracking-wider font-mono rounded uppercase">Cloud</span>
-            <span class="text-[10px] text-slate-500 font-mono">June 02, 2026</span>
-          </div>
-          <h3 class="text-lg font-bold font-display text-white group-hover:text-neonLime transition-colors leading-snug cursor-pointer">
-            Scaling Kubernetes Deployments on AWS
-          </h3>
-          <p class="text-slate-350 text-xs sm:text-sm mt-3 leading-relaxed">
-            Pod horizontal autoscalings configurations, nodes clusters integrations, load balancers setups, and server overhead optimizations.
-          </p>
-        </div>
-        <div class="mt-5 pt-4 border-t border-slate-900/60 flex justify-between items-center text-xs">
-          <span class="text-slate-500">7 min read</span>
-          <a href="#" class="text-neonLime font-bold hover:underline flex items-center gap-1">Read &rarr;</a>
-        </div>
-      </div>
-
-      <!-- Article 4 -->
-      <div class="blog-card group glass-panel p-6 rounded-3xl flex flex-col justify-between hover:shadow-[0_0_20px_rgba(var(--color-accent-rgb),0.08)] transition-all duration-300 reveal" data-post-category="ai">
-        <div>
-          <div class="aspect-[16/10] bg-slate-950 rounded-2xl flex items-center justify-center p-4 border border-slate-900 overflow-hidden relative mb-5">
-            <div class="absolute w-24 h-24 bg-indigo-500/5 group-hover:bg-indigo-500/10 blur-2xl rounded-full transition-all"></div>
-            <!-- AI node -->
-            <svg class="w-12 h-12 text-neonLime animate-pulse" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
-            </svg>
-          </div>
-          <div class="flex items-center gap-3 mb-3">
-            <span class="px-2.5 py-0.5 bg-neonLime/10 text-neonLime text-[9px] font-bold tracking-wider font-mono rounded uppercase">AI</span>
-            <span class="text-[10px] text-slate-500 font-mono">May 28, 2026</span>
-          </div>
-          <h3 class="text-lg font-bold font-display text-white group-hover:text-neonLime transition-colors leading-snug cursor-pointer">
-            Integrating OpenAI and Vector Databases
-          </h3>
-          <p class="text-slate-350 text-xs sm:text-sm mt-3 leading-relaxed">
-            Constructing fast semantic indices, saving high-dimensional embeddings, and optimizing API token queries limits.
-          </p>
-        </div>
-        <div class="mt-5 pt-4 border-t border-slate-900/60 flex justify-between items-center text-xs">
-          <span class="text-slate-500">6 min read</span>
-          <a href="#" class="text-neonLime font-bold hover:underline flex items-center gap-1">Read &rarr;</a>
-        </div>
-      </div>
-
-      <!-- Article 5 -->
-      <div class="blog-card group glass-panel p-6 rounded-3xl flex flex-col justify-between hover:shadow-[0_0_20px_rgba(var(--color-accent-rgb),0.08)] transition-all duration-300 reveal" data-post-category="engineering">
-        <div>
-          <div class="aspect-[16/10] bg-slate-950 rounded-2xl flex items-center justify-center p-4 border border-slate-900 overflow-hidden relative mb-5">
-            <div class="absolute w-24 h-24 bg-neonLime/5 group-hover:bg-neonLime/10 blur-2xl rounded-full transition-all"></div>
-            <!-- Code code -->
-            <div class="w-full max-w-[140px] bg-slate-900 border border-slate-800 rounded-lg p-3 font-mono text-[7px] text-slate-500 flex flex-col gap-1">
-              <div><span class="text-indigo-400">const</span> app = () => {</div>
-              <div class="pl-2">document.render();</div>
-              <div>}</div>
-            </div>
-          </div>
-          <div class="flex items-center gap-3 mb-3">
-            <span class="px-2.5 py-0.5 bg-neonLime/10 text-neonLime text-[9px] font-bold tracking-wider font-mono rounded uppercase">Engineering</span>
-            <span class="text-[10px] text-slate-500 font-mono">May 21, 2026</span>
-          </div>
-          <h3 class="text-lg font-bold font-display text-white group-hover:text-neonLime transition-colors leading-snug cursor-pointer">
-            Building Ultra-Fast Landing Pages with Vanilla JS
-          </h3>
-          <p class="text-slate-350 text-xs sm:text-sm mt-3 leading-relaxed">
-            Eliminating heavy bundle script frames, mapping CSS variables, and writing optimal DOM selector loops for interactive components.
-          </p>
-        </div>
-        <div class="mt-5 pt-4 border-t border-slate-900/60 flex justify-between items-center text-xs">
-          <span class="text-slate-500">5 min read</span>
-          <a href="#" class="text-neonLime font-bold hover:underline flex items-center gap-1">Read &rarr;</a>
-        </div>
-      </div>
-
-      <!-- Article 6 -->
-      <div class="blog-card group glass-panel p-6 rounded-3xl flex flex-col justify-between hover:shadow-[0_0_20px_rgba(var(--color-accent-rgb),0.08)] transition-all duration-300 reveal" data-post-category="design">
-        <div>
-          <div class="aspect-[16/10] bg-slate-950 rounded-2xl flex items-center justify-center p-4 border border-slate-900 overflow-hidden relative mb-5">
-            <div class="absolute w-24 h-24 bg-indigo-500/5 group-hover:bg-indigo-500/10 blur-2xl rounded-full transition-all"></div>
-            <!-- Glass card -->
-            <div class="w-24 h-16 bg-slate-900/50 backdrop-blur-md border border-white/10 rounded-lg shadow-xl relative overflow-hidden flex items-center justify-center">
-              <span class="text-[9px] text-white/40 font-bold uppercase tracking-wider">Blur Glass</span>
-            </div>
-          </div>
-          <div class="flex items-center gap-3 mb-3">
-            <span class="px-2.5 py-0.5 bg-neonLime/10 text-neonLime text-[9px] font-bold tracking-wider font-mono rounded uppercase">Design</span>
-            <span class="text-[10px] text-slate-500 font-mono">May 14, 2026</span>
-          </div>
-          <h3 class="text-lg font-bold font-display text-white group-hover:text-neonLime transition-colors leading-snug cursor-pointer">
-            The Design Principles of Glassmorphism in 2026
-          </h3>
-          <p class="text-slate-350 text-xs sm:text-sm mt-3 leading-relaxed">
-            Layer border opacities configurations, backdrop blur-radius sizes, and layered dropshadow offsets matching modern dark configurations.
-          </p>
-        </div>
-        <div class="mt-5 pt-4 border-t border-slate-900/60 flex justify-between items-center text-xs">
-          <span class="text-slate-500">4 min read</span>
-          <a href="#" class="text-neonLime font-bold hover:underline flex items-center gap-1">Read &rarr;</a>
-        </div>
-      </div>
-
-    </div>
-    
-    <!-- Empty state for search results (Hidden initially) -->
-    <div id="no-results" class="hidden glass-panel py-16 px-6 text-center max-w-md mx-auto rounded-3xl flex flex-col items-center gap-4 reveal">
-      <div class="w-12 h-12 rounded-xl bg-neonLime/10 border border-neonLime/20 flex items-center justify-center text-neonLime">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-        </svg>
-      </div>
-      <h3 class="text-lg font-bold text-white">No articles match your query</h3>
-      <p class="text-xs text-slate-500">Try adjusting your keywords or category filters to find the insight you need.</p>
-    </div>
-
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-slate-950 border-t border-slate-900/60 px-6 py-16">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 items-start">
-      
-      <!-- Footer Info (5 Cols) -->
-      <div class="md:col-span-5 flex flex-col gap-5 flex-shrink-0">
-        <a href="index.html" class="flex items-center gap-3">
-          <div class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-900 border border-slate-800">
-            <svg class="w-6 h-6 text-neonLime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L12 12"/>
-            </svg>
-          </div>
-          <div class="flex flex-col text-left">
-            <span class="font-display font-bold text-lg leading-tight tracking-wider">CodeVerse</span>
-            <span class="text-[10px] text-neonLime font-medium uppercase tracking-widest leading-none">IT Solutions</span>
-          </div>
-        </a>
-        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-sm">
-          Fusing state of the art software engineering with pixel-perfect design interfaces. Building the future of custom digital systems.
-        </p>
-        
-        <!-- Social Icons -->
-        <div class="flex items-center gap-4 mt-2">
-          <a href="#" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-neonLime hover:border-neonLime/30 transition-all" aria-label="Twitter">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
-          </a>
-          <a href="#" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-neonLime hover:border-neonLime/30 transition-all" aria-label="GitHub">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-          </a>
-          <a href="#" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-neonLime hover:border-neonLime/30 transition-all" aria-label="LinkedIn">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Links Column 1 (3 Cols) -->
-      <div class="md:col-span-3 flex flex-col gap-4 text-left">
-        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-450">Navigation</h4>
-        <ul class="space-y-2.5 text-sm">
-          <li><a href="index.html" class="text-slate-400 hover:text-neonLime transition-colors">Home</a></li>
-          <li><a href="index.html#services" class="text-slate-400 hover:text-neonLime transition-colors">Services</a></li>
-          <li><a href="index.html#about" class="text-slate-400 hover:text-neonLime transition-colors">About Us</a></li>
-          <li><a href="index.html#portfolio" class="text-slate-400 hover:text-neonLime transition-colors">Portfolio</a></li>
-          <li><a href="#" class="text-slate-400 hover:text-neonLime transition-colors">Blog</a></li>
-          <li><a href="index.html#contact" class="text-slate-400 hover:text-neonLime transition-colors">Contact</a></li>
-        </ul>
-      </div>
-
-      <!-- Links Column 2 (4 Cols) -->
-      <div class="md:col-span-4 flex flex-col gap-4 text-left">
-        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-450 font-mono">Join our Tech Newsletter</h4>
-        <p class="text-slate-400 text-xs leading-relaxed">
-          Stay updated on the latest trends in custom web architectures, cloud setups, and artificial intelligence automation.
-        </p>
-        <form id="newsletter-form" class="flex gap-2 w-full mt-2">
-          <input type="email" required class="bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-white text-xs w-full focus:outline-none focus:border-neonLime" placeholder="name@email.com">
-          <button type="submit" class="bg-neonLime hover:bg-neonLimeHover text-black text-xs font-bold px-4 rounded-lg transition-colors">
-            Join
+    <!-- Filter & Search Widget -->
+    <section class="relative py-8 px-6 max-w-7xl mx-auto reveal">
+      <div
+        class="glass-panel p-6 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-6"
+      >
+        <!-- Category Tabs -->
+        <div
+          class="flex flex-wrap items-center justify-center gap-2 sm:gap-3"
+          id="category-tabs"
+        >
+          <button
+            class="px-5 py-2 rounded-full text-xs font-semibold bg-neonLime text-black font-bold transition-all shadow-[0_0_10px_rgba(var(--color-accent-rgb),0.2)]"
+            data-category="all"
+          >
+            All posts
           </button>
-        </form>
+          <button
+            class="px-5 py-2 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 hover:text-neonLime dark:hover:text-neonLime transition-all"
+            data-category="engineering"
+          >
+            Engineering
+          </button>
+          <button
+            class="px-5 py-2 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 hover:text-neonLime dark:hover:text-neonLime transition-all"
+            data-category="design"
+          >
+            Design
+          </button>
+          <button
+            class="px-5 py-2 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 hover:text-neonLime dark:hover:text-neonLime transition-all"
+            data-category="cloud"
+          >
+            Cloud
+          </button>
+          <button
+            class="px-5 py-2 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 hover:text-neonLime dark:hover:text-neonLime transition-all"
+            data-category="ai"
+          >
+            AI
+          </button>
+        </div>
+
+        <!-- Search input -->
+        <div class="relative w-full md:w-80 flex-shrink-0">
+          <input
+            type="text"
+            id="search-input"
+            class="w-full bg-slate-200 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-full px-5 py-2.5 pl-11 text-xs text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-neonLime transition-colors"
+            placeholder="Search insights..."
+          />
+          <div
+            class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500"
+          >
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog Cards Grid -->
+    <section class="relative py-12 px-6 max-w-7xl mx-auto">
+      <!-- Blog Cards Wrapper -->
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        id="blog-grid"
+      >
+        <!-- Article 1 -->
+        <div
+          class="blog-card group glass-panel p-6 rounded-3xl flex flex-col justify-between hover:shadow-[0_0_20px_rgba(var(--color-accent-rgb),0.08)] transition-all duration-300 reveal"
+          data-post-category="engineering"
+        >
+          <div class="text-left">
+            <div
+              class="aspect-[16/10] bg-slate-100 dark:bg-slate-950 rounded-2xl flex items-center justify-center p-4 border border-slate-200 dark:border-slate-900 overflow-hidden relative mb-5"
+            >
+              <div
+                class="absolute w-24 h-24 bg-neonLime/5 group-hover:bg-neonLime/10 blur-2xl rounded-full transition-all"
+              ></div>
+              <div
+                class="w-full max-w-[140px] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg p-2 font-mono text-[8px] text-slate-500"
+              >
+                <div
+                  class="border-b border-slate-105 dark:border-slate-800 pb-1 font-bold text-neonLime"
+                >
+                  SELECT * FROM users;
+                </div>
+                <div class="pt-1 text-[7px] leading-tight">
+                  EXPLAIN ANALYZE <br />
+                  INDEX SCAN...
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center gap-3 mb-3">
+              <span
+                class="px-2.5 py-0.5 bg-neonLime/10 text-neonLime text-[9px] font-bold tracking-wider font-mono rounded uppercase"
+                >Engineering</span
+              >
+              <span class="text-[10px] text-textMuted font-mono"
+                >June 12, 2026</span
+              >
+            </div>
+            <h3
+              class="text-lg font-bold font-display text-textMain group-hover:text-neonLime transition-colors leading-snug cursor-pointer"
+            >
+              Optimizing Database Queries in PostgreSQL
+            </h3>
+            <p class="text-textMuted text-xs sm:text-sm mt-3 leading-relaxed">
+              Index scanning methodologies, cache buffers hits optimizations,
+              and vacuum sorting configurations to speed up heavy queries.
+            </p>
+          </div>
+          <div
+            class="mt-5 pt-4 border-t border-borderMain flex justify-between items-center text-xs"
+          >
+            <span class="text-slate-500">5 min read</span>
+            <a
+              href="#"
+              class="text-neonLime font-bold hover:underline flex items-center gap-1"
+              >Read &rarr;</a
+            >
+          </div>
+        </div>
+
+        <!-- Article 2 -->
+        <div
+          class="blog-card group glass-panel p-6 rounded-3xl flex flex-col justify-between hover:shadow-[0_0_20px_rgba(var(--color-accent-rgb),0.08)] transition-all duration-300 reveal"
+          data-post-category="design"
+        >
+          <div class="text-left">
+            <div
+              class="aspect-[16/10] bg-slate-100 dark:bg-slate-950 rounded-2xl flex items-center justify-center p-4 border border-slate-200 dark:border-slate-900 overflow-hidden relative mb-5"
+            >
+              <div
+                class="absolute w-24 h-24 bg-indigo-500/5 group-hover:bg-indigo-500/10 blur-2xl rounded-full transition-all"
+              ></div>
+              <div
+                class="w-16 h-28 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-2 flex flex-col gap-2 transform group-hover:scale-105 transition-transform"
+              >
+                <div
+                  class="w-full h-1 bg-slate-100 dark:bg-slate-800 rounded"
+                ></div>
+                <div
+                  class="w-6 h-6 rounded-full bg-neonLime/15 border border-neonLime/30 mx-auto"
+                ></div>
+                <div
+                  class="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded"
+                ></div>
+              </div>
+            </div>
+            <div class="flex items-center gap-3 mb-3">
+              <span
+                class="px-2.5 py-0.5 bg-neonLime/10 text-neonLime text-[9px] font-bold tracking-wider font-mono rounded uppercase"
+                >Design</span
+              >
+              <span class="text-[10px] text-textMuted font-mono"
+                >June 08, 2026</span
+              >
+            </div>
+            <h3
+              class="text-lg font-bold font-display text-textMain group-hover:text-neonLime transition-colors leading-snug cursor-pointer"
+            >
+              Designing Fluid Interfaces for Mobile Devices
+            </h3>
+            <p class="text-textMuted text-xs sm:text-sm mt-3 leading-relaxed">
+              Physics-based UI layouts, elastic scrolls, and optimized gestures
+              response configurations designed to maximize mobile retention
+              rates.
+            </p>
+          </div>
+          <div
+            class="mt-5 pt-4 border-t border-borderMain flex justify-between items-center text-xs"
+          >
+            <span class="text-slate-500">4 min read</span>
+            <a
+              href="#"
+              class="text-neonLime font-bold hover:underline flex items-center gap-1"
+              >Read &rarr;</a
+            >
+          </div>
+        </div>
+
+        <!-- Article 3 -->
+        <div
+          class="blog-card group glass-panel p-6 rounded-3xl flex flex-col justify-between hover:shadow-[0_0_20px_rgba(var(--color-accent-rgb),0.08)] transition-all duration-300 reveal"
+          data-post-category="cloud"
+        >
+          <div class="text-left">
+            <div
+              class="aspect-[16/10] bg-slate-100 dark:bg-slate-950 rounded-2xl flex items-center justify-center p-4 border border-slate-200 dark:border-slate-900 overflow-hidden relative mb-5"
+            >
+              <div
+                class="absolute w-24 h-24 bg-neonLime/5 group-hover:bg-neonLime/10 blur-2xl rounded-full transition-all"
+              ></div>
+              <svg
+                class="w-12 h-12 text-neonLime animate-float-delayed"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
+                />
+              </svg>
+            </div>
+            <div class="flex items-center gap-3 mb-3">
+              <span
+                class="px-2.5 py-0.5 bg-neonLime/10 text-neonLime text-[9px] font-bold tracking-wider font-mono rounded uppercase"
+                >Cloud</span
+              >
+              <span class="text-[10px] text-textMuted font-mono"
+                >June 02, 2026</span
+              >
+            </div>
+            <h3
+              class="text-lg font-bold font-display text-textMain group-hover:text-neonLime transition-colors leading-snug cursor-pointer"
+            >
+              Scaling Kubernetes Deployments on AWS
+            </h3>
+            <p class="text-textMuted text-xs sm:text-sm mt-3 leading-relaxed">
+              Pod horizontal autoscalings configurations, nodes clusters
+              integrations, load balancers setups, and server overhead
+              optimizations.
+            </p>
+          </div>
+          <div
+            class="mt-5 pt-4 border-t border-borderMain flex justify-between items-center text-xs"
+          >
+            <span class="text-slate-500">7 min read</span>
+            <a
+              href="#"
+              class="text-neonLime font-bold hover:underline flex items-center gap-1"
+              >Read &rarr;</a
+            >
+          </div>
+        </div>
+
+        <!-- Article 4 -->
+        <div
+          class="blog-card group glass-panel p-6 rounded-3xl flex flex-col justify-between hover:shadow-[0_0_20px_rgba(var(--color-accent-rgb),0.08)] transition-all duration-300 reveal"
+          data-post-category="ai"
+        >
+          <div class="text-left">
+            <div
+              class="aspect-[16/10] bg-slate-100 dark:bg-slate-950 rounded-2xl flex items-center justify-center p-4 border border-slate-200 dark:border-slate-900 overflow-hidden relative mb-5"
+            >
+              <div
+                class="absolute w-24 h-24 bg-indigo-500/5 group-hover:bg-indigo-500/10 blur-2xl rounded-full transition-all"
+              ></div>
+              <svg
+                class="w-12 h-12 text-neonLime animate-pulse"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                />
+              </svg>
+            </div>
+            <div class="flex items-center gap-3 mb-3">
+              <span
+                class="px-2.5 py-0.5 bg-neonLime/10 text-neonLime text-[9px] font-bold tracking-wider font-mono rounded uppercase"
+                >AI</span
+              >
+              <span class="text-[10px] text-textMuted font-mono"
+                >May 28, 2026</span
+              >
+            </div>
+            <h3
+              class="text-lg font-bold font-display text-textMain group-hover:text-neonLime transition-colors leading-snug cursor-pointer"
+            >
+              Integrating OpenAI and Vector Databases
+            </h3>
+            <p class="text-textMuted text-xs sm:text-sm mt-3 leading-relaxed">
+              Constructing fast semantic indices, saving high-dimensional
+              embeddings, and optimizing API token queries limits.
+            </p>
+          </div>
+          <div
+            class="mt-5 pt-4 border-t border-borderMain flex justify-between items-center text-xs"
+          >
+            <span class="text-slate-500">6 min read</span>
+            <a
+              href="#"
+              class="text-neonLime font-bold hover:underline flex items-center gap-1"
+              >Read &rarr;</a
+            >
+          </div>
+        </div>
+
+        <!-- Article 5 -->
+        <div
+          class="blog-card group glass-panel p-6 rounded-3xl flex flex-col justify-between hover:shadow-[0_0_20px_rgba(var(--color-accent-rgb),0.08)] transition-all duration-300 reveal"
+          data-post-category="engineering"
+        >
+          <div class="text-left">
+            <div
+              class="aspect-[16/10] bg-slate-100 dark:bg-slate-950 rounded-2xl flex items-center justify-center p-4 border border-slate-200 dark:border-slate-900 overflow-hidden relative mb-5"
+            >
+              <div
+                class="absolute w-24 h-24 bg-neonLime/5 group-hover:bg-neonLime/10 blur-2xl rounded-full transition-all"
+              ></div>
+              <div
+                class="w-full max-w-[140px] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg p-3 font-mono text-[7px] text-slate-500 flex flex-col gap-1"
+              >
+                <div>
+                  <span class="text-indigo-400">const</span> app = () => {
+                </div>
+                <div class="pl-2">document.render();</div>
+                <div>}</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-3 mb-3">
+              <span
+                class="px-2.5 py-0.5 bg-neonLime/10 text-neonLime text-[9px] font-bold tracking-wider font-mono rounded uppercase"
+                >Engineering</span
+              >
+              <span class="text-[10px] text-textMuted font-mono"
+                >May 21, 2026</span
+              >
+            </div>
+            <h3
+              class="text-lg font-bold font-display text-textMain group-hover:text-neonLime transition-colors leading-snug cursor-pointer"
+            >
+              Building Ultra-Fast Landing Pages with Vanilla JS
+            </h3>
+            <p class="text-textMuted text-xs sm:text-sm mt-3 leading-relaxed">
+              Eliminating heavy bundle script frames, mapping CSS variables, and
+              writing optimal DOM selector loops for interactive components.
+            </p>
+          </div>
+          <div
+            class="mt-5 pt-4 border-t border-borderMain flex justify-between items-center text-xs"
+          >
+            <span class="text-slate-500">5 min read</span>
+            <a
+              href="#"
+              class="text-neonLime font-bold hover:underline flex items-center gap-1"
+              >Read &rarr;</a
+            >
+          </div>
+        </div>
+
+        <!-- Article 6 -->
+        <div
+          class="blog-card group glass-panel p-6 rounded-3xl flex flex-col justify-between hover:shadow-[0_0_20px_rgba(var(--color-accent-rgb),0.08)] transition-all duration-300 reveal"
+          data-post-category="design"
+        >
+          <div class="text-left">
+            <div
+              class="aspect-[16/10] bg-slate-100 dark:bg-slate-950 rounded-2xl flex items-center justify-center p-4 border border-slate-200 dark:border-slate-900 overflow-hidden relative mb-5"
+            >
+              <div
+                class="absolute w-24 h-24 bg-indigo-500/5 group-hover:bg-indigo-500/10 blur-2xl rounded-full transition-all"
+              ></div>
+              <div
+                class="w-24 h-16 bg-white/70 dark:bg-slate-900/50 backdrop-blur-md border border-slate-200 dark:border-white/10 rounded-lg shadow-xl relative overflow-hidden flex items-center justify-center"
+              >
+                <span
+                  class="text-[9px] text-white/40 font-bold uppercase tracking-wider"
+                  >Blur Glass</span
+                >
+              </div>
+            </div>
+            <div class="flex items-center gap-3 mb-3">
+              <span
+                class="px-2.5 py-0.5 bg-neonLime/10 text-neonLime text-[9px] font-bold tracking-wider font-mono rounded uppercase"
+                >Design</span
+              >
+              <span class="text-[10px] text-textMuted font-mono"
+                >May 14, 2026</span
+              >
+            </div>
+            <h3
+              class="text-lg font-bold font-display text-textMain group-hover:text-neonLime transition-colors leading-snug cursor-pointer"
+            >
+              The Design Principles of Glassmorphism in 2026
+            </h3>
+            <p class="text-textMuted text-xs sm:text-sm mt-3 leading-relaxed">
+              Layer border opacities configurations, backdrop blur-radius sizes,
+              and layered dropshadow offsets matching modern dark
+              configurations.
+            </p>
+          </div>
+          <div
+            class="mt-5 pt-4 border-t border-borderMain flex justify-between items-center text-xs"
+          >
+            <span class="text-slate-500">4 min read</span>
+            <a
+              href="#"
+              class="text-neonLime font-bold hover:underline flex items-center gap-1"
+              >Read &rarr;</a
+            >
+          </div>
+        </div>
       </div>
 
-    </div>
-
-    <!-- Copyright and details -->
-    <div class="max-w-7xl mx-auto border-t border-slate-900/60 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-      <div>&copy; 2026 CodeVerse Studio. All rights reserved.</div>
-      <div class="flex gap-6">
-        <a href="#" class="hover:text-neonLime transition-colors">Privacy Policy</a>
-        <a href="#" class="hover:text-neonLime transition-colors">Terms of Service</a>
+      <!-- Empty state for search results -->
+      <div
+        id="no-results"
+        class="hidden glass-panel py-16 px-6 text-center max-w-md mx-auto rounded-3xl flex flex-col items-center gap-4 reveal"
+      >
+        <div
+          class="w-12 h-12 rounded-xl bg-neonLime/10 border border-neonLime/20 flex items-center justify-center text-neonLime"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-textMain">
+          No articles match your query
+        </h3>
+        <p class="text-xs text-textMuted">
+          Try adjusting your keywords or category filters to find the insight
+          you need.
+        </p>
       </div>
-    </div>
-  </footer>
+    </section>
 
-  <!-- Vanilla JavaScript -->
-  <script src="script.js"></script>
-</body>
+    <!-- Footer -->
+    <footer
+      class="bg-slate-950 border-t border-slate-900/60 px-6 py-16 text-slate-400"
+    >
+      <div
+        class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 items-start"
+      >
+        <!-- Footer Info -->
+        <div class="md:col-span-5 flex flex-col gap-5 flex-shrink-0 text-left">
+          <a href="index.html" class="flex items-center gap-3">
+            <div
+              class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-900 border border-slate-800"
+            >
+              <svg
+                class="w-6 h-6 text-neonLime"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L12 12"
+                />
+              </svg>
+            </div>
+            <div class="flex flex-col text-left">
+              <span
+                class="font-display font-bold text-lg leading-tight tracking-wider text-white"
+                >CodeVerse</span
+              >
+              <span
+                class="text-[10px] text-neonLime font-medium uppercase tracking-widest leading-none"
+                >IT Solutions</span
+              >
+            </div>
+          </a>
+          <p class="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-sm">
+            Fusing state of the art software engineering with pixel-perfect
+            design interfaces. Building the future of custom digital systems.
+          </p>
+
+          <!-- Social Icons -->
+          <div class="flex items-center gap-4 mt-2">
+            <a
+              href="#"
+              class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-neonLime hover:border-neonLime/30 transition-all"
+              aria-label="Twitter"
+            >
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"
+                />
+              </svg>
+            </a>
+            <a
+              href="#"
+              class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-neonLime hover:border-neonLime/30 transition-all"
+              aria-label="GitHub"
+            >
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                />
+              </svg>
+            </a>
+            <a
+              href="#"
+              class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-neonLime hover:border-neonLime/30 transition-all"
+              aria-label="LinkedIn"
+            >
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Links Column 1 -->
+        <div class="md:col-span-3 flex flex-col gap-4 text-left">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-textMuted">
+            Navigation
+          </h4>
+          <ul class="space-y-2.5 text-sm">
+            <li>
+              <a
+                href="index.html"
+                class="text-slate-400 hover:text-neonLime transition-colors"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="index.html#services"
+                class="text-slate-400 hover:text-neonLime transition-colors"
+                >Services</a
+              >
+            </li>
+            <li>
+              <a
+                href="index.html#about"
+                class="text-slate-400 hover:text-neonLime transition-colors"
+                >About Us</a
+              >
+            </li>
+            <li>
+              <a
+                href="index.html#portfolio"
+                class="text-slate-400 hover:text-neonLime transition-colors"
+                >Portfolio</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="text-slate-400 hover:text-neonLime transition-colors"
+                >Blog</a
+              >
+            </li>
+            <li>
+              <a
+                href="index.html#contact"
+                class="text-slate-400 hover:text-neonLime transition-colors"
+                >Contact</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Links Column 2 -->
+        <div class="md:col-span-4 flex flex-col gap-4 text-left">
+          <h4
+            class="text-xs font-bold uppercase tracking-wider text-textMuted font-mono"
+          >
+            Join our Tech Newsletter
+          </h4>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Stay updated on the latest trends in custom web architectures, cloud
+            setups, and artificial intelligence automation.
+          </p>
+          <form id="newsletter-form" class="flex gap-2 w-full mt-2">
+            <input
+              type="email"
+              required
+              class="bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-white text-xs w-full focus:outline-none focus:border-neonLime"
+              placeholder="name@email.com"
+            />
+            <button
+              type="submit"
+              class="bg-neonLime hover:bg-neonLimeHover text-black text-xs font-bold px-4 rounded-lg transition-colors"
+            >
+              Join
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Copyright and details -->
+      <div
+        class="max-w-7xl mx-auto border-t border-slate-900/60 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500"
+      >
+        <div>&copy; 2026 CodeVerse Studio. All rights reserved.</div>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-neonLime transition-colors"
+            >Privacy Policy</a
+          >
+          <a href="#" class="hover:text-neonLime transition-colors"
+            >Terms of Service</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <!-- Vanilla JavaScript -->
+    <script src="script.js"></script>
+  </body>
 </html>
