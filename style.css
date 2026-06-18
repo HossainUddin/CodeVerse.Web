@@ -70,11 +70,16 @@ header nav.scrolled {
   box-shadow: 0 8px 32px 0 rgba(5, 8, 17, 0.35);
 }
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   font-family: var(--font-sans);
   background-color: var(--color-bg);
   color: var(--color-text);
-  overflow-x: hidden;
   scroll-behavior: smooth;
   font-size: 16px;
   transition:
