@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap");
 
 :root {
-  --font-sans: 'Plus Jakarta Sans', sans-serif;
-  --font-display: 'Space Grotesk', sans-serif;
-  
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+
   /* Light Mode Background / Text Variables (Default) */
   --color-bg: #f8fafc;
   --color-text: #0f172a;
@@ -12,7 +12,7 @@
   --color-card-border: rgba(15, 23, 42, 0.08);
   --color-grid-line: rgba(15, 23, 42, 0.02);
   --color-header-bg: rgba(255, 255, 255, 0.85);
-  
+
   /* Light Mode Accents (Forest Green, Cyan, Rose) */
   --color-accent: #4d7c0f; /* Darker Green for light mode contrast */
   --color-accent-hover: #3f6212;
@@ -41,22 +41,22 @@
   --color-card-border: rgba(255, 255, 255, 0.08);
   --color-grid-line: rgba(255, 255, 255, 0.015);
   --color-header-bg: rgba(13, 20, 38, 0.65);
-  
+
   /* Dark Mode Accents (Glowing Lime, Cyan, Rose) */
-  --color-accent: #C5F82A;
-  --color-accent-hover: #A8D222;
+  --color-accent: #86c404;
+  --color-accent-hover: #7cb202;
   --color-accent-rgb: 197, 248, 42;
 }
 
 .dark[data-theme="cyan"] {
-  --color-accent: #00F0FF;
-  --color-accent-hover: #00D8E6;
+  --color-accent: #049fcf;
+  --color-accent-hover: #0883a7;
   --color-accent-rgb: 0, 240, 255;
 }
 
-.dark[data-theme="rose"] {
-  --color-accent: #F43F5E;
-  --color-accent-hover: #E11D48;
+.dark[data-theme="red"] {
+  --color-accent: #cc0404;
+  --color-accent-hover: #c82045;
   --color-accent-rgb: 244, 63, 94;
 }
 
@@ -77,7 +77,9 @@ body {
   overflow-x: hidden;
   scroll-behavior: smooth;
   font-size: 16px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 /* Custom Scrollbar */
@@ -100,7 +102,8 @@ body {
 
 /* Animations */
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
   50% {
@@ -109,7 +112,8 @@ body {
 }
 
 @keyframes float-delayed {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
   50% {
@@ -118,7 +122,8 @@ body {
 }
 
 @keyframes float-reverse {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
   }
   50% {
@@ -127,7 +132,8 @@ body {
 }
 
 @keyframes pulse-glow {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.15;
     transform: scale(1);
   }
@@ -161,7 +167,9 @@ body {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--color-card-border);
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .glass-panel:hover {
@@ -170,7 +178,7 @@ body {
 
 /* Grid background pattern */
 .grid-bg {
-  background-image: 
+  background-image:
     linear-gradient(var(--color-grid-line) 1px, transparent 1px),
     linear-gradient(90deg, var(--color-grid-line) 1px, transparent 1px);
   background-size: 44px 44px;
@@ -189,7 +197,7 @@ body {
 }
 
 .nav-link-active::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -4px;
   left: 0;

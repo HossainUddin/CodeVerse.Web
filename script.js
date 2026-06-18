@@ -366,7 +366,7 @@ const initCodeVerse = () => {
         tabButtons.forEach((b) => {
           b.classList.remove(
             "bg-neonLime",
-            "text-black",
+            "text-white",
             "font-bold",
             "shadow-[0_0_10px_rgba(var(--color-accent-rgb),0.2)]",
           );
@@ -374,7 +374,7 @@ const initCodeVerse = () => {
             "bg-slate-100",
             "dark:bg-slate-900",
             "text-slate-700",
-            "dark:text-slate-300",
+            "dark:text-white",
             "hover:bg-slate-200",
             "dark:hover:bg-slate-800",
             "hover:text-neonLime",
