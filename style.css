@@ -1,6 +1,6 @@
 :root {
   --font-sans: "Plus Jakarta Sans", sans-serif;
-  --font-display: "Space Grotesk", sans-serif;
+  --font-display: "Zodiak", serif;
 
   /* Light Mode Background / Text Variables (Default) */
   --color-bg: #f8fafc;
@@ -236,4 +236,14 @@ body {
 }
 #mobile-backdrop {
   transition: opacity 0.3s ease;
+}
+
+/* Navigation Links & Buttons Font Style */
+.nav-link,
+.mobile-link,
+button,
+a.bg-neonLime,
+a.border-slate-700,
+.btn {
+  font-family: var(--font-display) !important;
 }
