@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth overflow-x-hidden">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeVerse Studio | Blog Post</title>
+    <meta name="description" content="Blog detail page" />
+
+    <!-- Fonts & Tailwind -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.fontshare.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=zodiak@100,101,300,301,400,401,500,501,700,701,800,801,900,901&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preload" href="css/style.css" as="style" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              neonLime: "var(--color-accent)",
+              neonLimeHover: "var(--color-accent-hover)",
+              darkBg: "var(--color-bg)",
+              glassBg: "var(--color-card-bg)",
+              textMain: "var(--color-text)",
+              textMuted: "var(--color-text-muted)",
+              borderMain: "var(--color-card-border)",
+            },
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', "sans-serif"],
+              display: ['"Zodiak"', "serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="bg-darkBg text-textMain min-h-screen selection:bg-neonLime selection:text-black grid-bg antialiased transition-colors duration-300"
+  >
+    <!-- Header (copied from blog/index) -->
+    <header
+      class="fixed top-4 left-4 right-4 md:left-1/2 md:right-auto md:-translate-x-1/2 md:w-[94%] md:max-w-6xl z-50"
+    >
+      <nav
+        class="glass-panel px-4 py-3 sm:px-6 rounded-full flex items-center justify-between transition-all duration-300"
+      >
+        <a
+          href="index.html"
+          class="flex items-center gap-2 sm:gap-3 group flex-shrink-0 bg-slate-900 dark:bg-transparent rounded-full px-2 mx-2"
+        >
+          <img
+            class="w-[100px] h-[30px] w-auto my-2"
+            src="Logo.webp"
+            alt="CodeVerse Logo"
+          />
+        </a>
+
+        <div
+          class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium"
+        >
+          <a
+            href="index.html"
+            class="nav-link nav-link-active hover:text-neonLime transition-colors py-1"
+            >Home</a
+          >
+          <a
+            href="index.html#services"
+            class="nav-link text-textMuted hover:text-neonLime transition-colors py-1"
+            >Services</a
+          >
+          <a
+            href="index.html#about"
+            class="nav-link text-textMuted hover:text-neonLime transition-colors py-1"
+            >About</a
+          >
+          <a
+            href="index.html#portfolio"
+            class="nav-link text-textMuted hover:text-neonLime transition-colors py-1"
+            >Portfolio</a
+          >
+          <a
+            href="blog.html"
+            class="nav-link text-textMuted hover:text-neonLime transition-colors py-1"
+            >Blog</a
+          >
+          <a
+            href="index.html#contact"
+            class="nav-link text-textMuted hover:text-neonLime transition-colors py-1"
+            >Contact</a
+          >
+        </div>
+
+        <div class="flex items-center gap-2 sm:gap-3">
+          <button
+            id="mode-btn"
+            class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-neonLime dark:hover:text-neonLime transition-colors hover:border-neonLime/45 dark:hover:border-neonLime/45"
+            aria-label="Toggle Light/Dark Mode"
+          >
+            <svg
+              id="mode-moon"
+              class="w-4 h-4 block"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+              />
+            </svg>
+            <svg
+              id="mode-sun"
+              class="w-4 h-4 hidden"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707.707M12 7a5 5 0 100 10 5 5 0 000-10z"
+              />
+            </svg>
+          </button>
+
+          <!-- Theme Switcher Desktop Dropdown -->
+          <div class="relative hidden sm:block">
+            <button
+              id="theme-btn"
+              class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-neonLime dark:hover:text-neonLime transition-colors hover:border-neonLime/45 dark:hover:border-neonLime/45"
+              aria-label="Select Theme"
+            >
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.01 2.512a15.9 15.9 0 013.398-1.62m0 0c1.214-.582 2.443-1.116 3.685-1.602l-.268-1.07a2.25 2.25 0 011.606-2.685l2.218-.556A2.246 2.246 0 0122 13.59c0 1.24-.97 2.291-2.207 2.378a19.825 19.825 0 01-6.877.427z"
+                />
+              </svg>
+            </button>
+
+            <div
+              id="theme-dropdown"
+              class="hidden absolute right-0 mt-3 w-40 glass-panel rounded-2xl p-2 shadow-2xl border border-borderMain flex flex-col gap-1 z-50"
+            >
+              <button
+                class="theme-option px-3 py-1.5 rounded-lg text-left text-xs font-semibold text-textMain flex items-center gap-2"
+                data-set-theme="lime"
+              >
+                <span class="w-2.5 h-2.5 rounded-full bg-[#C5F82A]"></span> Lime
+                Cyber
+              </button>
+              <button
+                class="theme-option px-3 py-1.5 rounded-lg text-left text-xs font-semibold text-textMain flex items-center gap-2"
+                data-set-theme="cyan"
+              >
+                <span class="w-2.5 h-2.5 rounded-full bg-[#00F0FF]"></span>
+                Oceanic Cyan
+              </button>
+              <button
+                class="theme-option px-3 py-1.5 rounded-lg text-left text-xs font-semibold text-textMain flex items-center gap-2"
+                data-set-theme="red"
+              >
+                <span class="w-2.5 h-2.5 rounded-full bg-[#F43F5E]"></span> Dark
+                Red
+              </button>
+            </div>
+          </div>
+
+          <a
+            href="#contact"
+            class="hidden sm:inline-flex px-5 py-2 bg-neonLime text-white font-semibold rounded-full hover:bg-neonLimeHover hover:shadow-[0_0_15px_rgba(var(--color-accent-rgb),0.35)] transition-all duration-300 text-xs"
+            >Get Started</a
+          >
+
+          <button
+            id="menu-btn"
+            class="md:hidden flex flex-col justify-between w-6 h-4 text-textMain hover:text-neonLime transition-colors focus:outline-none flex-shrink-0"
+            aria-label="Toggle Menu"
+          >
+            <span
+              class="w-full h-0.5 bg-current transition-transform duration-300"
+            ></span>
+            <span
+              class="w-full h-0.5 bg-current transition-opacity duration-300"
+            ></span>
+            <span
+              class="w-full h-0.5 bg-current transition-transform duration-300"
+            ></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <div class="w-full overflow-x-hidden relative pt-28">
+      <!-- Post Hero + Content -->
+      <section class="pt-10 pb-12 px-6 max-w-7xl mx-auto">
+        <div class="mb-6">
+          <a
+            href="blog.html"
+            class="text-sm text-textMuted hover:text-neonLime transition-colors"
+            >&larr; Back to Blog</a
+          >
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <!-- Main article -->
+          <div class="lg:col-span-8">
+            <div class="text-left mb-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span
+                  class="px-3 py-1 bg-neonLime/15 text-neonLime font-mono text-[10px] font-bold rounded-full uppercase tracking-wider"
+                  >Engineering</span
+                >
+                <span class="text-xs text-textMuted font-mono"
+                  >June 16, 2026</span
+                >
+                <span class="text-xs text-textMuted font-mono"
+                  >&bull; 6 min read</span
+                >
+              </div>
+              <h1
+                class="font-display font-bold text-3xl sm:text-4xl leading-tight tracking-tight text-textMain"
+              >
+                The Future of Serverless Edge Architectures and Microservices
+              </h1>
+              <p class="text-textMuted mt-4 text-sm sm:text-base max-w-3xl">
+                How static edge caching, decentralized database sync pools, and
+                low-latency API call routings are redefining loading speeds for
+                web applications globally.
+              </p>
+            </div>
+
+            <div
+              class="mt-6 mb-8 rounded-2xl overflow-hidden border border-borderMain bg-slate-100 dark:bg-slate-900"
+            >
+              <img
+                src="post_hero.jpg"
+                fetchpriority="high"
+                loading="eager"
+                width="1600"
+                height="420"
+                alt="Post Hero"
+                class="w-full h-[420px] object-cover"
+              />
+            </div>
+
+            <article
+              class="text-textMuted text-sm sm:text-base leading-relaxed space-y-6"
+            >
+              <p class="text-textMain">
+                Serverless edge computing is shifting how teams approach
+                application delivery. By moving compute closer to users and
+                combining microservices with edge caches, developers can build
+                experiences that feel instantaneous.
+              </p>
+
+              <h2 class="text-textMain text-xl font-bold">
+                Edge caching strategies
+              </h2>
+              <p>
+                Use short-lived immutable assets and stale-while-revalidate
+                headers to keep latency low while preserving freshness.
+                Implement consistent hashing for distributed caches to avoid
+                hot-spots.
+              </p>
+
+              <h3 class="text-textMain text-lg font-semibold">
+                Decentralized data sync
+              </h3>
+              <p>
+                When pushing data across regions, prefer vector-based
+                synchronization or CRDTs for conflict resolution. This minimizes
+                coordination overhead and keeps systems resilient.
+              </p>
+
+              <p>
+                More content can be added here. This template uses the same
+                styles, navbar, and footer as the other site pages.
+              </p>
+
+              <div
+                class="pt-6 border-t border-borderMain flex items-center justify-between"
+              >
+                <div class="flex items-center gap-3">
+                  <img
+                    loading="lazy"
+                    width="48"
+                    height="48"
+                    src="author.jpg"
+                    alt="Author"
+                    class="w-12 h-12 rounded-full object-cover border border-slate-800"
+                  />
+                  <div>
+                    <div class="text-textMain font-semibold">Alex Rivera</div>
+                    <div class="text-xs text-textMuted">
+                      Staff Engineer • CodeVerse
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3 text-xs text-textMuted">
+                  <span>Share:</span>
+                  <a href="#" class="text-neonLime hover:underline">Twitter</a>
+                  <a href="#" class="text-neonLime hover:underline">LinkedIn</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Sidebar -->
+          <aside class="lg:col-span-4">
+            <div class="glass-panel p-5 rounded-2xl mb-6">
+              <h4 class="text-sm font-bold text-textMain mb-2">
+                About the author
+              </h4>
+              <p class="text-xs text-textMuted">
+                Alex Rivera is a systems engineer focused on distributed
+                architectures, performance and cloud-native tooling.
+              </p>
+              <div class="mt-4 flex gap-2">
+                <a
+                  href="#"
+                  class="px-3 py-1 bg-neonLime text-white text-xs font-semibold rounded"
+                  >Follow</a
+                >
+                <a
+                  href="#"
+                  class="px-3 py-1 border border-borderMain text-textMuted text-xs rounded"
+                  >More articles</a
+                >
+              </div>
+            </div>
+
+            <div class="glass-panel p-5 rounded-2xl">
+              <h4 class="text-sm font-bold text-textMain mb-3">
+                Related posts
+              </h4>
+              <ul class="space-y-3 text-sm">
+                <li>
+                  <a href="blog.html" class="text-textMain hover:text-neonLime"
+                    >Optimizing Database Queries in PostgreSQL</a
+                  >
+                </li>
+                <li>
+                  <a href="blog.html" class="text-textMain hover:text-neonLime"
+                    >Scaling Kubernetes Deployments on AWS</a
+                  >
+                </li>
+                <li>
+                  <a href="blog.html" class="text-textMain hover:text-neonLime"
+                    >Integrating OpenAI and Vector Databases</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Related / CTA -->
+      <section class="px-6 pb-12 max-w-5xl mx-auto">
+        <div
+          class="glass-panel p-6 rounded-2xl flex items-center justify-between"
+        >
+          <div>
+            <h3 class="text-lg font-bold text-textMain">
+              Enjoyed this article?
+            </h3>
+            <p class="text-textMuted text-sm">
+              Subscribe to our newsletter for more engineering deep dives.
+            </p>
+          </div>
+          <a
+            href="#"
+            class="px-5 py-2 bg-neonLime text-white font-bold rounded-lg"
+            >Subscribe</a
+          >
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer (copied) -->
+    <footer
+      class="bg-slate-950 border-t border-slate-900/60 px-6 py-16 text-slate-400"
+    >
+      <div
+        class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 items-start"
+      >
+        <div class="md:col-span-5 flex flex-col gap-5 flex-shrink-0 text-left">
+          <a href="index.html" class="flex items-center gap-3"
+            ><img
+              loading="lazy"
+              width="200"
+              height="60"
+              class="w-[200px] h-[60px] w-auto"
+              src="Logo.webp"
+              alt="CodeVerse Logo"
+          /></a>
+          <p class="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-sm">
+            Fusing state of the art software engineering with pixel-perfect
+            design interfaces. Building the future of custom digital systems.
+          </p>
+          <div class="flex items-center gap-4 mt-2">
+            <a
+              href="#"
+              class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-neonLime hover:border-neonLime/30 transition-all"
+              aria-label="Twitter"
+              ><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"
+                /></svg
+            ></a>
+            <a
+              href="#"
+              class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-neonLime hover:border-neonLime/30 transition-all"
+              aria-label="GitHub"
+              ><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                /></svg
+            ></a>
+            <a
+              href="#"
+              class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-neonLime hover:border-neonLime/30 transition-all"
+              aria-label="LinkedIn"
+              ><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                /></svg
+            ></a>
+          </div>
+        </div>
+
+        <div class="md:col-span-3 flex flex-col gap-4 text-left">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-textMuted">
+            Navigation
+          </h4>
+          <ul class="space-y-2.5 text-sm">
+            <li>
+              <a
+                href="index.html"
+                class="text-slate-400 hover:text-neonLime transition-colors"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="index.html#services"
+                class="text-slate-400 hover:text-neonLime transition-colors"
+                >Services</a
+              >
+            </li>
+            <li>
+              <a
+                href="index.html#about"
+                class="text-slate-400 hover:text-neonLime transition-colors"
+                >About Us</a
+              >
+            </li>
+            <li>
+              <a
+                href="index.html#portfolio"
+                class="text-slate-400 hover:text-neonLime transition-colors"
+                >Portfolio</a
+              >
+            </li>
+            <li>
+              <a
+                href="blog.html"
+                class="text-slate-400 hover:text-neonLime transition-colors"
+                >Blog</a
+              >
+            </li>
+            <li>
+              <a
+                href="index.html#contact"
+                class="text-slate-400 hover:text-neonLime transition-colors"
+                >Contact</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-4 flex flex-col gap-4 text-left">
+          <h4
+            class="text-xs font-bold uppercase tracking-wider text-textMuted font-mono"
+          >
+            Join our Tech Newsletter
+          </h4>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Stay updated on the latest trends in custom web architectures, cloud
+            setups, and artificial intelligence automation.
+          </p>
+          <form id="newsletter-form" class="flex gap-2 w-full mt-2">
+            <input
+              type="email"
+              required
+              class="bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-white text-xs w-full focus:outline-none focus:border-neonLime"
+              placeholder="name@email.com"
+              aria-label="Email Address for Newsletter"
+            />
+            <button
+              type="submit"
+              class="bg-neonLime hover:bg-neonLimeHover text-white text-xs font-bold px-4 rounded-lg transition-colors"
+            >
+              Join
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div
+        class="max-w-7xl mx-auto border-t border-slate-900/60 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500"
+      >
+        <div>&copy; 2026 CodeVerse Studio. All rights reserved.</div>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-neonLime transition-colors"
+            >Privacy Policy</a
+          ><a href="#" class="hover:text-neonLime transition-colors"
+            >Terms of Service</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/script.js" defer></script>
+  </body>
+</html>
